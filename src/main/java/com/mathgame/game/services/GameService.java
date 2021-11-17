@@ -4,7 +4,7 @@ import com.mathgame.game.Request.InsertData;
 
 public interface GameService {
 
-    String insertUser(InsertData insertData);
+    boolean insertUser(InsertData insertData);
 
     InsertData getUserByUserName(String username);
 

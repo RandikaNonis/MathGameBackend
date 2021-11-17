@@ -14,9 +14,12 @@ public class ApiController {
     private GameService gameService;
 
     @PostMapping("/insertUser")
-    public String insertUser(@RequestBody InsertData insertData) {
-        System.out.println(insertData);
-        return gameService.insertUser(insertData);
+    public boolean insertUser(@RequestBody InsertData insertData) {
+        try {
+            return gameService.insertUser(insertData);
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     @GetMapping("/login/{username}/{password}")
@@ -32,7 +35,12 @@ public class ApiController {
 
     @GetMapping("/getUserByUserName/{username}")
     public InsertData getUserByUserName(@PathVariable(value = "username") String username) {
-        return gameService.getUserByUserName(username);
+        try {
+            return gameService.getUserByUserName(username);
+        } catch (Exception ex) {
+            return null;
+        }
+
     }
 
 }

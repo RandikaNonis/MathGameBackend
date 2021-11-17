@@ -13,17 +13,14 @@ public class GameRepositoryImpl implements GameRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public String insertUser(InsertData insertData) {
+    public boolean insertUser(InsertData insertData) {
         String sql = "INSERT INTO user(userName,firstName,lastName,password,highestScore,rank)VALUES (?,?,?,?,?,?)";
 
         int result = jdbcTemplate.update(sql, insertData.getUsername().toUpperCase(), insertData.getFirstName(),
                 insertData.getLastName(), insertData.getPassword().toUpperCase(), insertData.getHighestScore(),
                 insertData.getRank());
 
-        if (result > 0) {
-            return "User successfully added";
-        }
-        return null;
+        return result > 0;
     }
 
     @Override

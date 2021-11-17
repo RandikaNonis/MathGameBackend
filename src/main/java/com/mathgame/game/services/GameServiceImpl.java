@@ -12,7 +12,7 @@ public class GameServiceImpl implements GameService {
     GameRepository gameRepository;
 
     @Override
-    public String insertUser(InsertData insertData) {
+    public boolean insertUser(InsertData insertData) {
         return gameRepository.insertUser(insertData);
     }
 
