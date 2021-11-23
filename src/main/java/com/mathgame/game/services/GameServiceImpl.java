@@ -1,6 +1,7 @@
 package com.mathgame.game.services;
 
 import com.mathgame.game.Request.InsertData;
+import com.mathgame.game.Request.UpdateRank;
 import com.mathgame.game.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,11 @@ public class GameServiceImpl implements GameService {
     @Override
     public boolean insertUser(InsertData insertData) {
         return gameRepository.insertUser(insertData);
+    }
+
+    @Override
+    public boolean updateRank(UpdateRank updateRank) {
+        return gameRepository.updateRank(updateRank);
     }
 
     @Override

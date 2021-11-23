@@ -1,6 +1,7 @@
 package com.mathgame.game.controller;
 
 import com.mathgame.game.Request.InsertData;
+import com.mathgame.game.Request.UpdateRank;
 import com.mathgame.game.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,15 @@ public class ApiController {
             return null;
         }
 
+    }
+
+    @PutMapping("/updateLevel")
+    public boolean updateLevel(@RequestBody UpdateRank updateRank) {
+        try {
+            return gameService.updateRank(updateRank);
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
 }

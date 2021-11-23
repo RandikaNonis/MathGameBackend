@@ -2,6 +2,7 @@ package com.mathgame.game.repository;
 
 import com.mathgame.game.Request.DataMapper;
 import com.mathgame.game.Request.InsertData;
+import com.mathgame.game.Request.UpdateRank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,6 +20,14 @@ public class GameRepositoryImpl implements GameRepository {
         int result = jdbcTemplate.update(sql, insertData.getUsername().toUpperCase(), insertData.getFirstName(),
                 insertData.getLastName(), insertData.getPassword().toUpperCase(), insertData.getHighestScore(),
                 insertData.getRank());
+
+        return result > 0;
+    }
+
+    @Override
+    public boolean updateRank(UpdateRank updateRank) {
+        String sql = "UPDATE USER SET RANK = RANK+1 WHERE USERNAME = ?";
+        int result = jdbcTemplate.update(sql, updateRank.getUsername().toUpperCase());
 
         return result > 0;
     }
